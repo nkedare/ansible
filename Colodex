@@ -1,0 +1,149 @@
+Colodex  
+
+ ssh root@161.202.156.7
+vGD48523
+/opt/docker/scripts/activemq-monitoring-script/activemq-mon.sh
+
+ExecStart=bash /opt/script.sh
+
+SetJavaHome /usr/bin/java
+./sqlplus udaan_neebal_fy_new/admin@"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=103.19.133.94)(POR^C7029))(CONNECT_DATA=(SID=devdbnew)))"
+
+
+export ORACLE_HOME=/home/neebal/Downloads/instantclient_19_6
+
+export LD_LIBRARY_PATH=/home/neebal/Downloads/instantclient_19_6
+
+
+./sasa.sh catalina.out abc|zyx|abc
+
+App server app.colodax.com
+161.202.156.2 - 	wESMj42K
+Node server node.colodax.com
+161.202.156.8 - ckyu2sfM
+
+	neRXnu32
+	
+	19332, 61613, 3306, 80, 443,9191-9193, 18332,8545,4000-4050,61616, 8000, 8545,9900-9902, 8546
+	https://community.grafana.com/t/issues-with-alerting/5531
+	
+	
+[root@nodeserver ~]# echo "activemq 1" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/my_custom_metrics/instance/nodeserver
+[root@nodeserver ~]# cd
+[root@nodeserver ~]# cd /tmp/
+[root@nodeserver tmp]# ./ngrok http 9091
+[root@nodeserver tmp]# echo "activemq 2" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/my_custom_metrics/instance/nodeserver
+[root@nodeserver tmp]# echo "activemq 2" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/my_custom_metrics/instance/nodeserver
+[root@nodeserver tmp]# echo "activemq 2" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/my_custom_metrics/instance/nodeserver
+[root@nodeserver tmp]# echo "activemq 2" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/activemq/instance/nodeserver
+
+
+ps aux  |  grep -i activemq  |  awk '{print $2}'  |  xargs sudo kill -9
+
+
+ps aux  |  grep -i alerts-service.jar  |  awk '{print $2}'  |  xargs sudo kill -9
+
+/etc/grafana/grafana.ini
+
+[root@nodeserver ~]# for i in $(cat services-jar.txt) ; do echo `ps -ef |grep -i "trade-reporter.jar"|grep  "$i"`; done
+root 9301 1 0 May31 ? 00:00:44 java -jar /opt/colodax/builds/trade-reporter/trade-reporter.jar btc-inr.conf
+root 9302 1 0 May31 ? 00:00:43 java -jar /opt/colodax/builds/trade-reporter/trade-reporter.jar eth-inr.conf
+[root@nodeserver trade-services-script]# cat trade-svc.sh 
+#!/bin/bash
+
+for i in $(cat /opt/docker/scripts/trade-services-script/trade-service-jar.txt) ; do echo $(ps -ef |grep -i "trade-reporter.jar"|grep  "$i")
+
+if [[ $(ps -ef | grep -i "trade-reporter.jar"|grep  "$i") !="" ]];
+then
+echo "trade 1" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/trade-services/instance/nodeserver
+else
+echo "trade 0" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/trade-services/instance/nodeserver
+fi
+done
+
+	
+	
+
+jenkins se only jobs run as service to start partiy job to trade and 1 to monitor
+
+	#!/bin/bash
+
+	if [[ $(ps -ef | grep activem[q]) != "" ]]
+	then
+	echo "activemq 1" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/activemq/instance/nodeserver
+	else
+	echo "activemq 0" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/activemq/instance/nodeserver
+	fi
+	
+	
+	
+ethereum-wallet-manager.jar
+bitcoin-wallet-manager.jar
+alerts-service.jar
+fee-rebate.jar
+
+Number of Servies 
+Parity-services 
+Trade-Services
+alerts-service
+activemq -service
+geth service 
+bitcoin-abc Service
+litecoin service
+ethereum-wallet-manager
+bitcoin-wallet-manager
+fee-rebate
+file-manager service
+
+
+
+#!/bin/bash
+dt=$(date '+%Y/%m/%d %H:%M:%S');
+for i in $(cat /opt/docker/scripts/parity-services-script/parity-service-jar.txt) ; do
+j=$(echo $i | cut -d '-' -f1 )
+if [[ $(ps -ef | grep -i "parity-system.jar"|grep  "$i") != "" ]]
+then
+echo "$j"_parity" 1" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/parity-services/instance/nodeserver
+else
+echo "$j"_parity" 0" | curl --data-binary @- http://10.129.146.103:9091/metrics/job/parity-services/instance/nodeserver
+echo "$j"_parity" 0"
+cd /opt/colodax/builds/parity/"$j"inr
+nohup java -jar /opt/colodax/builds/parity/parity-system.jar $j-inr.conf &
+echo "$j Service Started....."
+echo ""$dt" "$j"_parity has been started" >> /var/log/cryptologs
+fi
+done
+
+
+	cd /opt/colodax/builds/file-manager
+	nohup java -jar /opt/colodax/builds/file-manager.jar &
+	
+	cd /opt/colodax/builds/alerts-service
+	nohup java -jar alerts-service.jar &
+
+192.168.0.54:3000
+
+curl smtp.gmail.com:587
+220 smtp.gmail.com ESMTP m2sm3287080pjf.34 - gsmtp
+502 5.5.1 Unrecognized command. m2sm3287080pjf.34 - gsmtp
+
+cd /opt/geth
+nohup ./geth --datadir /ethnode/ethnode --cache 2048 --maxpeers 100 --rpc -rpcport "8545" --rpcaddr "0.0.0.0" --rpccorsdomain "*" --ws --wsport "8545" --wsaddr "0.0.0.0" --wsorigins "*" &
+cd /opt/bitcoin-abc/bin
+nohup ./bitcoind -conf=/ethnode/.bitcoin-abc/bitcoin-abc.conf -datadir=/ethnode/.bitcoin-abc/ &
+
+cd /opt/litecoin/bin
+nohup ./litecoind -conf=/ethnode/.litecoin/litecoin.conf -datadir=/ethnode/.litecoin/ &
+
+docker run -d --rm -it -p "8000:8000" -v "/xlmnode/stellar:/opt/stellar" --name stellar stellar/quickstart --pubnet
+
+
+/opt/tomcat/bin/startup.sh
+/opt/tomcat/bin/shutdown.sh
+cd /opt/tomcat
+
+cd /opt/tomcat
+rm -rf target/
+rm -rf /opt/tomcat/logs/*
+
+
